@@ -27,4 +27,4 @@ The program must:
 - Be modular and memory-efficient
 
 # The Big picture
-<img src="images/example.png" width="300" />
+<img src="images/example.png" width="500" />
