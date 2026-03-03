@@ -25,3 +25,6 @@ The program must:
 - Perform statistical calculations in a separate thread
 - Include proper exception handling
 - Be modular and memory-efficient
+
+# The Big picture
+<img src="images/example.png" width="300" />
