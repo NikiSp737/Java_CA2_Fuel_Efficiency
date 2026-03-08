@@ -34,13 +34,32 @@ However, I am a careless record keeper – the readings are not necessarily in i
 
 ---
 # The Big picture
-<img src="images/example.png" width="500" />
+	<img src="images/example.png" width="500" />
 
-## Design
-**TODO:** Description of the program design and reasoning behind it.  
-Include UML diagrams where appropriate.
+# Design
+## UML Class Diagram
+Below is a Class Diagram representing all currently accounted for classes and their members/methods:
+	<img src="images/UML_Class_Diagram.png" width="800" />
 
-### Ideas: 
+## Hand-Drawn UML Class Diagram
+Below is the hand drawn version of the UML Class diagram requested by the professor at the start of the next Lab session:
+	<img src="images/UML_Class_diagram_HandDrawn.png" width="800" />
+
+## High-Level Activity Diagram
+The activity diagram shown below describes the functional flow of the program.
+It illustrates the overall sequence of operations without defining the internal implementation details of each method.
+	<img src="images/UML_Activity_Diagram_HighLvl.png" width="800" />
+A lower-level activity diagram is currently being developed. This diagram will include explicit method calls and detailed internals to complement the high-level overview shown above.
+
+**TODO:** 
+	Description of the program design and reasoning behind it.  
+	Create **Low-Level Activity Diagram** including method calls and their definitions.
+	Add the **Hand drawn Activity Diagram** requested by the professor.
+	Implement a **Test Harness** for the program including definitions for expected inputs and outputs of each test.
+	Include UML diagrams where appropriate.
+
+
+## Ideas: 
 The program may:
 
 - Sort records by date
