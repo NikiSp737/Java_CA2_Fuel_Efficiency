@@ -40,7 +40,7 @@ However, I am a careless record keeper – the readings are not necessarily in i
 **TODO:** Description of the program design and reasoning behind it.  
 Include UML diagrams where appropriate.
 
-## Ideas: 
+### Ideas: 
 The program may:
 
 - Sort records by date
@@ -52,7 +52,9 @@ The program may:
 
 
 ## Build
-**TODO:** Brief description of any notable coding features or implementation details used in the program.
+**TODO:** 
+Brief description of any notable coding features or implementation details used in the program.
 
 ## Results and Discussion
-**TODO:** Presentation and discussion of test results that were introduced in the requirements section.
+**TODO:** 
+Presentation and discussion of test results that were introduced in the requirements section.
