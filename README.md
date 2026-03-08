@@ -39,7 +39,7 @@ However, I am a careless record keeper – the readings are not necessarily in i
 # Design
 ## UML Class Diagram
 Below is a Class Diagram representing all currently accounted for classes and their members/methods:
-<img src="images/example.png" width="800" />
+<img src="images/UML_Class_Diagram.png" width="800" />
 
 ## Hand-Drawn UML Class Diagram
 Below is the hand drawn version of the UML Class diagram requested by the professor at the start of the next Lab session:
