@@ -21,30 +21,45 @@ public class EfficiencyStatsTask implements Runnable {
 	//method executed when the thread is started
     @Override
     public void run() {
-		//initialise min as a very large value for comparison
-		// Second year algorithm 
-		double min = efficiencies.indexOf(Collections.min(efficiencies)); 
+		//initialise min as a very large value for comparison 
+		//double min = efficiencies.indexOf(Collections.min(efficiencies)); 
+		//double min = 999999; // Just set to value we know will be larger.
+		double min = efficiencies.get(0); // Better to get first element 
 		//initialise max as a very small value for comparison
-		double max = ; 
-		
+		double max = efficiencies.get(0);
+		// Sum to store total efficiency value for average calculation
+		double sum = 0;
+		// Count value for amount of elements in list
+		int count = efficiencies.size();
+		// If count is 0 or less then return 0's for the results
+		// Prevents division by 0 later on.
+		if(count <= 0){
+			result = new EfficiencyStats(0, 0, 0, 0);
+			System.out.println("No efficiency values to analyse.");
+			return; // Exit
+		}
+		// Linear scan algorithm O^n complexity because it goes through each efficiency value once
 		//loop through each efficiency value in the efficiencies list
-		for (int i = 1; i < efficiencies.size(); i++){
-			//if the efficiency is smaller than the current min
-			if(efficiencies[i] < min) {
-			//set min equal to the new smaller value
-			smaller = min;
+		for (int i = 0; i < efficiencies.size(); i++){
+			// Current for storing efficiency value assessed
+			double current = efficiencies.get(i);
+			// Check if new efficiency is smaller 
+			if(current < min){
+			// update min
+			min = current;
 			}
+			// Check if new efficiency is greater
+			if(current > max){
+			// Set max to be the new biggest value
+				max = current;
+			}
+			// Sum all efficiencies for average calculation
+			sum += current;
 		} 
-		
-		//if efficiency is bigger than the current max
-		//set max to be the new biggest value
-		//add efficiency to the running total
-		//increment count of values processed 
-
-		//ensure count is > 0 before dividing to get avg 
-		//avg = add all up and divide by the count
-		//create the result object with the stats variables 
-		//if the count was not > 0 return zeros for each stat as the list would be empty
+		// Average
+		double average = sum / count;
+		// new result object to return stats values
+		result = new EfficiencyStats(min, max, average, count);
     }
 
     public EfficiencyStats getResult() {					//retrieve method for the computed stats
