@@ -6,64 +6,97 @@
 // Purpose of code: Skeleton for MileageRecord method
 
 import java.util.List;
+import java.util.Scanner;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 
 public class Mileage {
 
-    public static void main(String[] args) {
-        if (args.length == 0) {
-            printUsageMessage();
-            return;
-        }
+	public static void main(String[] args) {
+		if(args.length == 0){
+			System.out.println("Error no filename provided");
+			return;
+		}
+		String filename = args[0];
+		
+		List<MileageRecord> records = readRecords(filename);
+		sortRecords(records);
+		computeEfficiencies(records);
+		 
+		//create the object that will capture the stats
+		EfficiencyStatsTask task = new EfficiencyStatsTask(records);
+		Thread t = new Thread(task);
+		t.start();
+		
+		try {
+			t.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("Min efficiency: " + task.getMin());
+		System.out.println("Max efficiency: " + task.getMax());
+		System.out.println("Avg efficiency: " + task.getAvg());
+	}
 
-        String filename = args[0];
-        List<MileageRecord> records = MileageProcessor.readRecords(filename);
-
-        if (records.size() < 2) {
-            printNotEnoughData();
-            return;
-        }
-
-        MileageProcessor.sortByDate(records);
-        List<Double> efficiencies = MileageProcessor.computeEfficiencies(records);
-        EfficiencyStats stats = startStatisticsThread(efficiencies);
-
-        printTable(records);
-        printStatistics(stats);
+	//read filename from command line arguments
+	public static List<MileageRecord> readRecords(String filename) {
+		List<MileageRecord> records = new ArrayList<>();
+		 
+		File f = new File(filename);
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		
+		//try creating a new scanner for the contents of the file
+		try(Scanner sc1 = new Scanner(f)) {
+			//skip first header line (not an actual record)
+			sc1.nextLine();
+			//first scanner scans in each individual line
+			while(sc1.hasNextLine()){
+				String data = sc1.nextLine();
+				//if the string (aka the line) is empty skip this loop iteration
+				if (data.trim().isEmpty()) continue;
+				//try creating 2nd scanner to parse the contents of the line
+				try(Scanner sc2 = new Scanner(data)){
+					//scan the String representing the date
+					String dateString = sc2.next();
+					//convert the String to LocalDate type date using the formatter
+					LocalDate date = LocalDate.parse(dateString, formatter);
+					int kilometers = sc2.nextInt();
+					double liters = sc2.nextDouble();
+					//add a new MileageRecord object to the records list
+					records.add(new MileageRecord(date, kilometers, liters));
+				}
+			}
+		} catch(FileNotFoundException e) {
+			System.out.println("Error file not found");
+		}
+		return records;
+	}
+	
+	//sort records based on date
+    public static void sortRecords(List<MileageRecord> records) {
+        records.sort(Comparator.comparing(MileageRecord::getDate));
     }
-
-    private static EfficiencyStats startStatisticsThread(List<Double> efficiencies) {
-        EfficiencyStatsTask task = new EfficiencyStatsTask(efficiencies);
-        Thread thread = new Thread(task);
-
-        try {
-            thread.start();
-            thread.join();
-        } catch (InterruptedException e) {
-            System.out.println("Thread interrupted: " + e.getMessage());
-            return new EfficiencyStats(0, 0, 0, 0);
-        }
-
-        return task.getResult();
-    }
-
-    private static void printTable(List<MileageRecord> records) {
-        for (MileageRecord record : records) {
-            System.out.println(record);
-        }
-    }
-
-    private static void printStatistics(EfficiencyStats stats) {
-        System.out.println("Min efficiency: " + stats.getMin());
-        System.out.println("Max efficiency: " + stats.getMax());
-        System.out.println("Avg efficiency: " + stats.getAvg());
-        System.out.println("Count: " + stats.getCount());
-    }
-
-    private static void printUsageMessage() {
-        System.out.println("Usage: java Mileage <filename>");
-    }
-
-    private static void printNotEnoughData() {
-        System.out.println("Not enough data to compute efficiencies.");
-    }
+	
+	//compute efficiencies
+	public static void computeEfficiencies(List<MileageRecord> records) {
+		for(int i = 1; i < records.size(); i++) {
+			MileageRecord currentRecord = records.get(i);
+			MileageRecord previousRecord = records.get(i-1);
+			
+			double distance = currentRecord.getKilometers() - previousRecord.getKilometers(); 
+			double liters = currentRecord.getLiters();
+			if(distance > 0) {
+				double efficiency = (liters / distance) * 100;	
+				currentRecord.setEfficiency(efficiency);
+			} else { 
+				currentRecord.setEfficiency(Double.NaN);
+			}
+		}
+	}
 }

@@ -5,7 +5,7 @@
 // Module: ELTC H3028 Java and Algorithms
 // Purpose of code: Testing harness for the readRecords(), sortByDate(), computeEfficiencies() and efficiencyStatsTask() methods
 
-import java.time.LocalDate;
+/*import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class MileageTestHarness {
 	MileageRecord: date= 2025-01-16, kilometers= 25740, liters= 28.98, efficiency= Null
 	MileageRecord: date= 2025-01-23, kilometers= 26141, liters= 27.13, efficiency= Null
 	*/
-    private static void testReadRecords(String filename) {
+/*   private static void testReadRecords(String filename) {
         System.out.println("test for the readRecords method:");
 
         List<MileageRecord> records = MileageProcessor.readRecords(filename);
@@ -45,7 +45,7 @@ public class MileageTestHarness {
         } 
     }
 	
-	
+*/
 	
 
 	//sortByDate() method definition stored in MileageRecord.java
@@ -56,7 +56,7 @@ public class MileageTestHarness {
 	2025-01-16 25740 28.98
 	2025-01-23 26141 27.13
 	*/
-    private static void testSortByDate(String filename) {
+/*   private static void testSortByDate(String filename) {
         System.out.println("test for sortByDate method:");
 
         List<MileageRecord> records = MileageProcessor.readRecords(filename);
@@ -77,7 +77,7 @@ public class MileageTestHarness {
 	6.88
 	6.77
 	*/
-    private static void testComputeEfficiencies(String filename) {
+ /*   private static void testComputeEfficiencies(String filename) {
         System.out.println("test for computeEfficiencies:");
 
         List<MileageRecord> records = MileageProcessor.readRecords(filename);
@@ -99,7 +99,7 @@ public class MileageTestHarness {
 	Avg = 6.82
 	Count = 3
 	*/
-    private static void testEfficiencyStatsTask(String filename) {
+ /*   private static void testEfficiencyStatsTask(String filename) {
         System.out.println("test for EfficiencyStatsTask:");
 
         List<MileageRecord> records = MileageProcessor.readRecords(filename);
@@ -124,4 +124,4 @@ public class MileageTestHarness {
 		System.out.println("Avg = " + stats.getAvg());
 		System.out.println("Count = " + stats.getCount());
     }
-}
+} */
