@@ -22,10 +22,20 @@ public class EfficiencyStatsTask implements Runnable {
     @Override
     public void run() {
 		//initialise min as a very large value for comparison
+		// Second year algorithm 
+		double min = efficiencies.indexOf(Collections.min(efficiencies)); 
 		//initialise max as a very small value for comparison
+		double max = ; 
+		
 		//loop through each efficiency value in the efficiencies list
-		//if the efficiency is smaller than the current min 
-		//set min equal to the new smaller value
+		for (int i = 1; i < efficiencies.size(); i++){
+			//if the efficiency is smaller than the current min
+			if(efficiencies[i] < min) {
+			//set min equal to the new smaller value
+			smaller = min;
+			}
+		} 
+		
 		//if efficiency is bigger than the current max
 		//set max to be the new biggest value
 		//add efficiency to the running total

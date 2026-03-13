@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MileageProcessor {
-
+	// List to store read records
     public static List<MileageRecord> readRecords(String filename) {
         ArrayList<MileageRecord> records = new ArrayList<>();	//create storage for records
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");	//define the date format
@@ -49,7 +49,7 @@ public class MileageProcessor {
 
         return records;											//returns list of MileageRecord objects
     }
-
+	// Method to sort the list by date 
     public static void sortByDate(List<MileageRecord> records) {
         records.sort(Comparator.comparing(MileageRecord::getDate));
     }
