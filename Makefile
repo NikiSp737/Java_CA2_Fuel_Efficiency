@@ -21,10 +21,8 @@ all: compile
 compile:
 	mkdir -p $(BIN)
 	javac -d $(BIN) \
-	$(SRC)/EfficiencyStats.java \
 	$(SRC)/EfficiencyStatsTask.java \
 	$(SRC)/Mileage.java \
-	$(SRC)/MileageProcessor.java \
 	$(SRC)/MileageRecord.java \
 	$(SRC)/MileageTestHarness.java
 	echo "Compiled successfully!"
