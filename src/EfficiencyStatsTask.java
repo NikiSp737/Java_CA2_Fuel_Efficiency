@@ -28,34 +28,46 @@ public class EfficiencyStatsTask implements Runnable {
 		avg = 0;
 		// Sum to store total efficiency value for average calculation
 		double sum = 0;
+		// Count for the amount of efficiencies 
 		int count = 0;
-		
+
+		// Loop through each efficiency starting from 1 because element at 0 is Nan,
+		// In each iteration it compares the efficiency value to min and max and decides which one is smaller or larger
+		// This is a Linear scan algorithm with o(n) complexity so the more values, the slower it gets
 		for(int i = 1; i < records.size(); i++) {
 			MileageRecord current = records.get(i);
+
+			// Get current indexed efficiency value
 			double efficiency = current.getEfficiency();
+
+			// Checking if value is not Nan to avoid errors
 			if (!Double.isNaN(efficiency)) {
+				// Finding min efficiency 
 				if(efficiency < min) { 
 					min = efficiency; 
 				}
-				
+				// Finding max efficiency
 				if(efficiency > max) {
 					max = efficiency;
 				}
-				
 				//increment count with each loop iteration
 				count++;
 				// Sum all efficiency values
 				sum += efficiency;
 			}
 		}
-		
+		// Avoiding division by 0
 		if(count > 0) {
 			avg = sum / count;
-		} else {
+		} 
+		// Otherwise avg is set as Nan
+		else {
 			avg = Double.NaN;
+			System.out.println("Count was 0 or below!");
 		}
 	}
 
+	// Helpers for getting private values to other methods  
     public double getMin() { 
         return min;
     }

@@ -15,7 +15,7 @@ MAIN = Mileage
 
 # make all 
 all: compile
-	make run-all > results.txt
+	make run-all > Testing.txt
 
 # Compile CA2 Java files, automatically creates bin folder if it doesn't exist
 compile:
@@ -25,7 +25,7 @@ compile:
 	$(SRC)/Mileage.java \
 	$(SRC)/MileageRecord.java \
 	$(SRC)/MileageTestHarness.java
-	echo "Compiled successfully!"
+	echo "Compiled!"
 # If want to compile any java file then uncomment:
 # javac -d $(BIN) $(wildcard $(SRC)/*.java)
 
@@ -36,6 +36,7 @@ run-test: compile
 
 # To run program with all test files
 run-all: compile
+	echo ""
 	echo "Running mileage_tiny.txt"
 	java -cp $(BIN) $(MAIN) $(DATA)/mileage_tiny.txt
 	echo ""
