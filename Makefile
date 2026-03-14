@@ -3,8 +3,8 @@
 # Usage:
 # make all: compiles java and runs on all txt files
 # make compile: makes bin dir and "javacs" all ca2 java files
-# make run-test: runs test on mileage_tiny.txt
-# make run-all:  Copies all data txt files specified 
+# make run-harness: runs MileageTestHarness
+# make run-tests:  Copies all data txt files specified 
 # make clean: removes all .class files in bin directory
 
 # Directories
@@ -12,7 +12,7 @@ SRC = src
 BIN = bin
 DATA = data
 MAIN = Mileage
-
+HARNESS = MileageTestHarness
 # make all 
 all: compile
 	make run-all > Testing.txt
@@ -29,13 +29,13 @@ compile:
 # If want to compile any java file then uncomment:
 # javac -d $(BIN) $(wildcard $(SRC)/*.java)
 
-# To run program with small test file
-run-test: compile
-	java -cp $(BIN) $(MAIN) $(DATA)/mileage_tiny.txt
+# To run program with harness code
+run-harness: compile
+	java -cp $(BIN) $(HARNESS) $(DATA)
 	echo "Testing!"
 
 # To run program with all test files
-run-all: compile
+run-tests: compile
 	echo ""
 	echo "Running mileage_tiny.txt"
 	java -cp $(BIN) $(MAIN) $(DATA)/mileage_tiny.txt
@@ -52,6 +52,22 @@ run-all: compile
 	echo "Running mileage_10years.txt"
 	java -cp $(BIN) $(MAIN) $(DATA)/mileage_10years.txt
 	echo ""
+
+	echo "Running empty.txt"
+	java -cp $(BIN) $(MAIN) $(DATA)/empty.txt
+	echo ""
+
+	echo "Running mileage_uno.txt"
+	java -cp $(BIN) $(MAIN) $(DATA)/mileage_uno.txt
+	echo ""
+
+	echo "Running negative_distance.txt"
+	java -cp $(BIN) $(MAIN) $(DATA)/negative_distance.txt
+	echo ""
+
+	echo "zero_distance.txt"
+	java -cp $(BIN) $(MAIN) $(DATA)/zero_distance.txt
+	echo ""	
 	
 # Later if any text file testing is needs testing use for loop in shell
 # run-all: compile

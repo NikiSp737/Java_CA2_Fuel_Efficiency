@@ -53,8 +53,15 @@ public class Mileage {
 		
 		//try creating a new scanner for the contents of the file
 		try(Scanner sc1 = new Scanner(f)) {
+			// First check if scanner has next line
 			//skip first header line (not an actual record)
-			sc1.nextLine();
+			if(sc1.hasNextLine()){
+				sc1.nextLine();
+			}
+			// Otherwise, return empty records
+			else {
+			return records; 
+			}
 			//first scanner scans in each individual line
 			while(sc1.hasNextLine()){
 				String data = sc1.nextLine();
