@@ -75,4 +75,12 @@ Max efficiency: 3.393442622950819
 Avg efficiency: 3.393442622950819
 echo ""	
 
+echo "blank_lines_mileage.txt"
+blank_lines_mileage.txt
+java -cp bin Mileage data/blank_lines_mileage.txt
+Min efficiency: 6.455486542443064
+Max efficiency: 7.544117647058823
+Avg efficiency: 6.929445952180047
+echo ""	
+
 make[1]: Leaving directory '/home/N23L/Documents/Learning_Java/CA2/Java_CA2_Fuel_Efficiency'

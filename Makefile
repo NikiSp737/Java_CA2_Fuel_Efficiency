@@ -68,6 +68,10 @@ run-tests: compile
 	echo "zero_distance.txt"
 	java -cp $(BIN) $(MAIN) $(DATA)/zero_distance.txt
 	echo ""	
+
+	echo "blank_lines_mileage.txt"
+	java -cp $(BIN) $(MAIN) $(DATA)/blank_lines_mileage.txt
+	echo ""	
 	
 # Later if any text file testing is needs testing use for loop in shell
 # run-all: compile
