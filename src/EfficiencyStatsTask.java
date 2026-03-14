@@ -63,7 +63,7 @@ public class EfficiencyStatsTask implements Runnable {
 		// Otherwise avg is set as Nan
 		else {
 			avg = Double.NaN;
-			System.out.println("Count was 0 or below!");
+			System.out.println("Bad data!");
 		}
 	}
 
