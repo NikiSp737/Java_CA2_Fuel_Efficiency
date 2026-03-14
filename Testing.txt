@@ -44,4 +44,35 @@ echo ""
 echo "Running empty.txt"
 Running empty.txt
 java -cp bin Mileage data/empty.txt
+Count was 0 or below!
+Min efficiency: Infinity
+Max efficiency: -Infinity
+Avg efficiency: NaN
+echo ""
+
+echo "Running mileage_uno.txt"
+Running mileage_uno.txt
+java -cp bin Mileage data/mileage_uno.txt
+Count was 0 or below!
+Min efficiency: Infinity
+Max efficiency: -Infinity
+Avg efficiency: NaN
+echo ""
+
+echo "Running negative_distance.txt"
+Running negative_distance.txt
+java -cp bin Mileage data/negative_distance.txt
+Min efficiency: 1.6655172413793102
+Max efficiency: 1.6655172413793102
+Avg efficiency: 1.6655172413793102
+echo ""
+
+echo "zero_distance.txt"
+zero_distance.txt
+java -cp bin Mileage data/zero_distance.txt
+Min efficiency: 3.393442622950819
+Max efficiency: 3.393442622950819
+Avg efficiency: 3.393442622950819
+echo ""	
+
 make[1]: Leaving directory '/home/N23L/Documents/Learning_Java/CA2/Java_CA2_Fuel_Efficiency'

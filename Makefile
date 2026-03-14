@@ -15,7 +15,7 @@ MAIN = Mileage
 HARNESS = MileageTestHarness
 # make all 
 all: compile
-	make run-all > Testing.txt
+	make run-tests > Testing.txt
 
 # Compile CA2 Java files, automatically creates bin folder if it doesn't exist
 compile:
