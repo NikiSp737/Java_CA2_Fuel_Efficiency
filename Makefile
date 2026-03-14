@@ -3,15 +3,20 @@
 # Usage:
 # make all: compiles java and runs on all txt files
 # make compile: makes bin dir and "javacs" all ca2 java files
-# make run-test: runs test on mileage_tiny.txt
+# make test-compile: compiles Junit test files into test_bin dir
+# make test: Compiles test files and runs tests
+# make test0: runs program on test0.txt
 # make run-all:  Copies all data txt files specified 
 # make clean: removes all .class files in bin directory
 
 # Directories
-SRC = src
+SRC = src/main
 BIN = bin
 DATA = data
 MAIN = Mileage
+TEST = src/test
+TESTBIN = testbin
+JUNIT = src/lib/junit-platform-console-standalone-6.0.3.jar
 
 # make all 
 all: compile
@@ -31,12 +36,23 @@ compile:
 # If want to compile any java file then uncomment:
 # javac -d $(BIN) $(wildcard $(SRC)/*.java)
 
-# To run program with small test file
-run-test: compile
-	java -cp $(BIN) $(MAIN) $(DATA)/mileage_tiny.txt
-	echo "Testing!"
+test:
+	mkdir -p $(TESTBIN)
+	javac -cp "$(BIN):$(JUNIT)" -d $(TESTBIN) $(TEST)/*.java
+	echo "Tests built!"
+	java -jar $(JUNIT) execute --classpath "$(BIN):$(TESTBIN)" --scan-classpath
+	echo "Running Tests!"
 
-# To run program with all test files
+# Had to read: 
+# https://docs.junit.org/6.0.3/running-tests/console-launcher.html
+# To use Junit from command line
+
+# To run program with small test file
+test0: compile
+	java -cp $(BIN) $(MAIN) $(DATA)/test0.txt
+	echo "Testing test0.txt"
+
+# To run program with all files
 run-all: compile
 	echo "Running mileage_tiny.txt"
 	java -cp $(BIN) $(MAIN) $(DATA)/mileage_tiny.txt
@@ -61,7 +77,7 @@ run-all: compile
 # java -cp $(BIN) $(MAIN) $$file; \
 # echo ""; \
 # done
-
+	
 # remove compiled class files
 clean:
 	rm -f $(BIN)/*.class
