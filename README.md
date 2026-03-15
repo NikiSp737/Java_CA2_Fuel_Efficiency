@@ -11,6 +11,18 @@ A sample of the text file’s contents might look as follows.
 NB I always fill my tank right to the top. 
 However, I am a careless record keeper – the readings are not necessarily in increasing date order! 
 
+---
+# The Big picture
+<img src="images/example.png" width="800" />
+
+The user would provide a text file with records formatted like this:
+```
+02/01/2025	24886	27.59
+09/01/2025	25319	29.55
+23/01/2025	26141	27.13
+16/01/2025	25740	28.98
+```
+
 ## Project Requirements:
 
 ### Functional Requirements
@@ -31,10 +43,6 @@ However, I am a careless record keeper – the readings are not necessarily in i
 - Java code should be properly formatted and indented (e.g., using `astyle`)
 
 ---
-
----
-# The Big picture
-<img src="images/example.png" width="500" />
 
 # Design
 ## UML Class Diagram
