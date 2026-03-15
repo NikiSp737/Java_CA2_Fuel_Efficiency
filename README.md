@@ -5,15 +5,21 @@ Github repository for collaborative work during the Java &amp; Algorithms CA2
 
 ## Introduction:
 
+For this prject a user came up with a problem describing it like this:
+
 I keep a file with details of my car's mileage. Whenever I fill up with petrol I enter the odometer reading (the total km the car has travelled) and the amount of petrol (in litres) 
 I've just bought, beside each other on a single line. 
 A sample of the text file’s contents might look as follows. 
 NB I always fill my tank right to the top. 
 However, I am a careless record keeper – the readings are not necessarily in increasing date order! 
 
+The team was tasked with a creating Java software to make this user's life easier by calculating their car's efficiencies based on distance travelled and gas used.  
+
 ---
 # The Big picture
 <img src="images/example.png" width="800" />
+
+It was found that to calculate efficiency distance and fuel consumed is needed. Distance is calculated by subtracting the current distance of the odometer by the previous distance on the odometer, which gives the distance travelled. The fuel used is based on how much the user fills up the tank since they mentioned they always fill to the top at each refuel. The efficiency was calculated by using Efficiency = (Litres Used/Distance Travelled) * 100 to get the L per 100km fuel efficiency.
 
 The user would provide a text file with records formatted like this:
 ```
