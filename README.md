@@ -6,13 +6,13 @@ Github repository for collaborative work during the Java &amp; Algorithms CA2
 ## Introduction:
 
 For this project a user came up with a problem describing it like this:
-```
+
 "I keep a file with details of my car's mileage. Whenever I fill up with petrol I enter the odometer reading (the total km the car has travelled) and the amount of petrol (in litres) 
 I've just bought, beside each other on a single line. 
 A sample of the text file’s contents might look as follows. 
 NB I always fill my tank right to the top. 
 However, I am a careless record keeper – the readings are not necessarily in increasing date order!"
-```
+
 
 The team was tasked with a creating Java software to make this user's life easier by calculating their car's efficiencies based on distance travelled and gas used.  
 
