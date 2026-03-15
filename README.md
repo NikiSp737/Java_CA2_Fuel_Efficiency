@@ -52,55 +52,36 @@ It illustrates the overall sequence of operations without defining the internal 
 
 A lower-level activity diagram is currently being developed. This diagram will include explicit method calls and detailed internals to complement the high-level overview shown above.
 
-**TODO:** 
-- [ ] Description of the program design and reasoning behind it.  
-- [ ] Create **Low-Level Activity Diagram** including method calls and their definitions.
-- [ ] Add the **Hand drawn Activity Diagram** requested by the professor.
-- [ ] Implement a **Test Harness** for the program including definitions for expected inputs and outputs of each test.
-- [ ] Include UML diagrams where appropriate.
-
-
-## Ideas: 
-The program may:
-
-- Sort records by date
-- Calculate fuel efficiency (L/100km)
-- Compute minimum, maximum, and average efficiency
-- Perform statistical calculations in a separate thread
-- Include proper exception handling
-- Be modular and memory-efficient
-
-
 ## Build
 
-The program was developed collaboratively using a pair-programming approach during development sessions. One team member acted as the primary coder while the other reviewed the logic, suggested improvements, and searched documentation where needed. These roles were swapped regularly so that both team members contributed to the implementation, debugging, and testing of the final solution.
+The program was developed collaboratively using a pair-programming approach. During development sessions, one team member focused on coding while the other reviewed the logic, suggested improvements, and checked documentation. These roles were regularly swapped so both members contributed to the coding, debugging, and testing process.
 
 The implementation follows the class structure described in the design section.
 
-- `Mileage` handles the main program flow, including file input, sorting the mileage records by date, computing efficiencies, creating the statistics thread, and printing the final results.
-- `MileageRecord` stores the data for each mileage entry, including the date, odometer reading, litres filled, and computed efficiency. Getter and setter methods were used to allow controlled access to the record data.
-- `EfficiencyStatsTask` performs the minimum, maximum, and average efficiency calculations in a separate thread by implementing the `Runnable` interface.
+- `Mileage` controls the main program flow. It reads the input file, sorts the records by date, computes efficiencies, starts the statistics thread, and prints the results.
+- `MileageRecord` stores the data for each entry (date, kilometers, liters, and efficiency) and provides getter and setter methods.
+- `EfficiencyStatsTask` calculates the minimum, maximum, and average efficiencies in a separate thread by implementing the `Runnable` interface.
 
-Several Java features were used in the implementation:
+Several Java features were used:
 
-- Java Collections (`List` and `ArrayList`) to store and manage the set of `MileageRecord` objects
-- Comparator-based sorting using `Comparator.comparing()` to order records by date
-- File parsing using `Scanner` to read and parse the input file
-- Java Time API (`LocalDate` and `DateTimeFormatter`) to correctly parse and store dates
-- Multithreading using the `Runnable` interface and `Thread` class to compute efficiency statistics
-- Exception handling using `try-catch` blocks to handle file input errors and thread interruption
+- Java Collections (`List`, `ArrayList`) to store mileage records  
+- `Comparator.comparing()` to sort records by date  
+- `Scanner` for parsing the input file  
+- Java Time API (`LocalDate`, `DateTimeFormatter`) for date handling  
+- Multithreading using `Runnable` and `Thread`  
+- Exception handling (`try-catch`) for file and thread errors  
 
-A separate test harness was also developed so that individual methods could be tested independently before integration into the final program.
+A separate test harness was also created to test individual methods before integrating them into the final program.
 
-In addition, a simple `Makefile` was used to automate compiling and testing. This made it easier to repeatedly run the program on both normal and edge-case input files such as empty files, single-record files, negative-distance files, zero-distance files, and files containing blank lines.
+A `Makefile` was used to automate compilation and testing. It allows the program to be easily run against both normal input files and edge-case files such as empty files, single-entry files, negative distance values, zero distance values, and files containing blank lines.
 
 ---
 
 ## Results and Discussion
 
-The program was tested using the sample file `mileage_tiny.txt`, which contains four mileage entries. The tests described in the **Tests and Expected Outputs** section were carried out using the test harness to verify that each stage of the program behaved as expected.
+The program was tested using the sample file `mileage_tiny.txt`, which contains four mileage entries. The tests were executed using the test harness to confirm that each stage of the program behaved correctly.
 
-A `Makefile` was also used to automate compilation and testing across multiple input files in the `data` directory. This allowed the program to be checked not only on the normal sample file, but also on edge-case files such as:
+The `Makefile` was also used to automatically run the program on multiple input files in the `data` directory, including several edge-case scenarios such as:
 
 - `empty.txt`
 - `mileage_uno.txt`
@@ -108,18 +89,18 @@ A `Makefile` was also used to automate compilation and testing across multiple i
 - `zero_distance.txt`
 - `blank_lines_mileage.txt`
 
-This helped confirm that the program behaved robustly across both normal and unusual input cases.
+This helped verify that the program behaves correctly for both normal and unusual inputs.
 
 ### Table 1: Testing Results
 
 | Component Tested | Expected Output | Observed Output | Pass/Fail |
 |---|---|---|---|
-| `readRecords()` | Each entry from the file printed with correct values | Records read in from the file: `4` records. Entries were loaded correctly with the correct date, kilometers, litres, and initial `NaN` efficiency values. | Pass |
-| `sortRecords()` | Each entry from the file printed in chronological order | Records were sorted correctly into date order: `2025-01-02`, `2025-01-09`, `2025-01-16`, `2025-01-23`. | Pass |
-| `computeEfficiencies()` | Each computed efficiency printed, including `NaN` for the first record | Efficiencies were computed correctly as: `NaN`, `6.824480369515011`, `6.883610451306413`, `6.765586034912719`. | Pass |
-| `EfficiencyStatsTask` | Minimum, maximum, and average statistics printed correctly | Statistics were calculated correctly: Min = `6.765586034912719`, Max = `6.883610451306413`, Avg = `6.8245589519113805`. | Pass |
+| `readRecords()` | Entries read correctly from file | 4 records loaded with correct values and initial `NaN` efficiency | Pass |
+| `sortRecords()` | Records sorted by date | Records correctly ordered chronologically | Pass |
+| `computeEfficiencies()` | Efficiencies calculated including `NaN` for first record | Values computed correctly (`NaN`, 6.824, 6.884, 6.766) | Pass |
+| `EfficiencyStatsTask` | Min, max, and average efficiency printed | Statistics calculated correctly | Pass |
 
-Overall, the testing showed that the program met the main functional requirements. The input file was read correctly, the records were sorted into chronological order, efficiencies were calculated correctly, and the statistics thread produced the expected minimum, maximum, and average values. The additional edge-case tests run through the `Makefile` also helped confirm that the program handled unusual inputs in a stable and predictable way.
+Overall, testing confirmed that the program meets the required functionality. Records are read correctly, sorted chronologically, efficiencies are computed correctly, and the statistics thread produces the expected results. The additional edge-case tests also confirmed that the program handles unusual inputs in a stable and predictable way.
 
 ---
 
